@@ -1,0 +1,4 @@
+﻿
+namespace MagicSquare.Skia.Gtk
+{
+}
