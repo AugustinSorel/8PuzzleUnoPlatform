@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using Windows.UI.Xaml.Controls;
 
 namespace MagicSquare
 {
@@ -10,7 +7,18 @@ namespace MagicSquare
     {
         private int[] numbers;
 
+        public int[] Numbers
+        {
+            get { return numbers; }
+            set { numbers = value; }
+        }
+
         public GameEngine()
+        {
+            PopulateArray();
+        }
+
+        private void PopulateArray()
         {
             // SetUp array
             numbers = new int[9];
@@ -28,14 +36,6 @@ namespace MagicSquare
                         break;
                     }
                 }
-            }
-
-            // Display array
-            int index = -1;
-            foreach (var item in container.Children.Cast<Button>())
-            {
-                index++;
-                item.Content = numbers[index] == 9 ? string.Empty : (object)numbers[index];
             }
         }
     }

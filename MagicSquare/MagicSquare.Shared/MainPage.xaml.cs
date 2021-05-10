@@ -11,7 +11,7 @@ namespace MagicSquare
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        private GameEngine gameEngine;
+        private MainPageViewModel mainPageViewModel;
 
         public MainPage()
         {
@@ -20,12 +20,12 @@ namespace MagicSquare
             foreach (var item in container.Children.Cast<Button>())
                 item.Click += new RoutedEventHandler(Buttons_Click);
 
-            gameEngine = new GameEngine();
+            mainPageViewModel = new MainPageViewModel(container);
         }
 
         private void Buttons_Click(object sender, RoutedEventArgs e)
         {
-
+            mainPageViewModel.Test();
         }
     }
 }
