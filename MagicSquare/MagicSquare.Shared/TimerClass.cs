@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Diagnostics;
 using Windows.UI.Xaml;
 
 namespace MagicSquare
@@ -15,15 +14,24 @@ namespace MagicSquare
         public string TimeString 
         {
             get { return timeString; }
-            set { timeString = value; NotifyPropertyChanged("TimeString"); } 
+            set 
+            { 
+                timeString = value; 
+                NotifyPropertyChanged("TimeString"); 
+            } 
         }
 
         public TimerClass()
         {
             dispatcherTimer = new DispatcherTimer();
-            dispatcherTimer.Tick += Timer_Click;
+            dispatcherTimer.Tick += Timer_Tick;
             dispatcherTimer.Interval = TimeSpan.FromSeconds(1);
 
+            SetTimer();
+        }
+
+        private void SetTimer()
+        {
             sec = 0;
             minute = 0;
             hour = 0;
@@ -31,7 +39,17 @@ namespace MagicSquare
             TimeString = "00:00:00";
         }
 
-        private void Timer_Click(object sender, object e)
+        private void Timer_Tick(object sender, object e)
+        {
+            TimeString = GetTimeString();
+        }
+
+        internal void Pause()
+        {
+            dispatcherTimer.Stop();
+        }
+
+        private string GetTimeString()
         {
             sec++;
 
@@ -56,8 +74,7 @@ namespace MagicSquare
             string minuteString = (minute < 10) ? "0" + minute.ToString() : minute.ToString();
             string hourString = (hour < 10) ? "0" + hour.ToString() : hour.ToString();
 
-            TimeString = hourString + ":" + minuteString + ":" + secString;
-            Debug.WriteLine(TimeString);
+            return hourString + ":" + minuteString + ":" + secString;
         }
 
         internal bool HasStarted()

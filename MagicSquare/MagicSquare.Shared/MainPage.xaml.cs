@@ -27,5 +27,10 @@ namespace MagicSquare
         {
             mainPageViewModel.HandleClickEvent(buttonClicked: sender as Button);
         }
+
+        private void PauseButton_Click(object sender, RoutedEventArgs e)
+        {
+            mainPageViewModel.TimerClass.Pause();
+        }
     }
 }

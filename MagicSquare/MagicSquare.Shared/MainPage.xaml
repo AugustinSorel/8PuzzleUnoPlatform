@@ -65,7 +65,7 @@
                     <SymbolIcon Symbol="Undo"/>
                 </Button>
 
-                <Button  Style="{StaticResource ToolBarButtonStyle}">
+                <Button  Style="{StaticResource ToolBarButtonStyle}" Click="PauseButton_Click">
                     <SymbolIcon Symbol="Pause"/>
                 </Button>
 

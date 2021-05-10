@@ -29,8 +29,10 @@ namespace MagicSquare
 
             bool valideMove = gameEngine.CheckMove(int.Parse(emptyCell.Tag.ToString()), int.Parse(buttonClicked.Tag.ToString()), buttonClicked.Content.ToString());
 
-            if (valideMove)
-                SwapContents(emptyCell, buttonClicked);
+            if (!valideMove)
+                return;
+                
+            SwapContents(emptyCell, buttonClicked);
 
             if (!TimerClass.HasStarted())
                 TimerClass.StartTimer();
