@@ -20,7 +20,6 @@ namespace MagicSquare
 
         private void PopulateArray()
         {
-            // SetUp array
             numbers = new int[9];
             Random random = new Random();
 
@@ -37,6 +36,11 @@ namespace MagicSquare
                     }
                 }
             }
+        }
+
+        internal void MoveNumberToEmptyCell()
+        {
+
         }
     }
 }

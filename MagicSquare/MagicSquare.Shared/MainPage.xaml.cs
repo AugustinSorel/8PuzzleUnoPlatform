@@ -25,7 +25,7 @@ namespace MagicSquare
 
         private void Buttons_Click(object sender, RoutedEventArgs e)
         {
-            mainPageViewModel.Test();
+            mainPageViewModel.HandleClickEvent(buttonClicked: sender as Button);
         }
     }
 }
