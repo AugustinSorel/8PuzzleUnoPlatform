@@ -26,14 +26,21 @@ namespace MagicSquare
 
         internal void HandleClickEvent(Button buttonClicked)
         {
-            Button emptyCell = Container.Children.Cast<Button>().Where(x => x.Content.ToString() == string.Empty).First();
+            Button emptyCell = GetButton(string.Empty);
 
-            bool goodMove = gameEngine.CheckMove(int.Parse(emptyCell.Tag.ToString()), int.Parse(buttonClicked.Tag.ToString()), buttonClicked.Content.ToString());
-            
-            if (goodMove)
+            bool valideMove = gameEngine.CheckMove(int.Parse(emptyCell.Tag.ToString()),
+                                                   int.Parse(buttonClicked.Tag.ToString()),
+                                                   buttonClicked.Content.ToString());
+
+            if (valideMove)
             {
                 SwapContents(emptyCell, buttonClicked);
             }
+        }
+
+        private Button GetButton(string buttonContent)
+        {
+            return Container.Children.Cast<Button>().Where(x => x.Content.ToString() == buttonContent).First();
         }
 
         private void SwapContents(Button emptyCell, Button buttonClicked)
