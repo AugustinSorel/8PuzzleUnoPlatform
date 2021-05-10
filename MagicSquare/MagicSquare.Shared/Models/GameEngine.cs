@@ -44,8 +44,8 @@ namespace MagicSquare
                 PopulateArray();
             }
 
-            //for (int i = 1; i < arrayOfRandomInegers.Length; i++)
-            //    ArrayOfRandomIntegers[i - 1] = i;
+            for (int i = 0; i < arrayOfRandomInegers.Length; i++)
+                ArrayOfRandomIntegers[i] = i;
         }
 
         private bool Solvable()
@@ -93,14 +93,14 @@ namespace MagicSquare
         internal void UpdateArray(int emptyCellTag, int buttonClickedTag, int value)
         {
             ArrayOfRandomIntegers[emptyCellTag] = value;
-            ArrayOfRandomIntegers[buttonClickedTag] = 9;
+            ArrayOfRandomIntegers[buttonClickedTag] = 8;
         }
 
         internal bool CheckEndGame()
         {
-            for (int i = 1; i < arrayOfRandomInegers.Length; i++)
-                if (arrayOfRandomInegers[i-1] != i)
-                    return false;
+            for (int i = 0; i < arrayOfRandomInegers.Length; i++)
+                if (arrayOfRandomInegers[i] != i)
+                    return false;// 0 -> empty string.
 
             return true;
         }
