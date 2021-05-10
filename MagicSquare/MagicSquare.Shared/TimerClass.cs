@@ -6,7 +6,7 @@ namespace MagicSquare
 {
     class TimerClass : INotifyPropertyChanged
     {
-        private DispatcherTimer dispatcherTimer;
+        public DispatcherTimer DispatcherTimer { get; set; }
         private int sec;
         private int minute;
         private int hour;
@@ -23,9 +23,9 @@ namespace MagicSquare
 
         public TimerClass()
         {
-            dispatcherTimer = new DispatcherTimer();
-            dispatcherTimer.Tick += Timer_Tick;
-            dispatcherTimer.Interval = TimeSpan.FromSeconds(1);
+            DispatcherTimer = new DispatcherTimer();
+            DispatcherTimer.Tick += Timer_Tick;
+            DispatcherTimer.Interval = TimeSpan.FromSeconds(1);
 
             SetTimer();
         }
@@ -46,7 +46,10 @@ namespace MagicSquare
 
         internal void Pause()
         {
-            dispatcherTimer.Stop();
+            if (DispatcherTimer.IsEnabled)
+                DispatcherTimer.Stop();
+            else
+                StartTimer();
         }
 
         private string GetTimeString()
@@ -84,7 +87,7 @@ namespace MagicSquare
 
         internal void StartTimer()
         {
-            dispatcherTimer.Start();
+            DispatcherTimer.Start();
         }
 
         #region Property Changed Event Handler

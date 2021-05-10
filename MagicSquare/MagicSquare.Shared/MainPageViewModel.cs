@@ -34,7 +34,7 @@ namespace MagicSquare
                 
             SwapContents(emptyCell, buttonClicked);
 
-            if (!TimerClass.HasStarted())
+            if (!TimerClass.DispatcherTimer.IsEnabled)
                 TimerClass.StartTimer();
         }
 
