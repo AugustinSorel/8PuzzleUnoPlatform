@@ -53,9 +53,9 @@
             <Button Grid.Row="1" Grid.Column="1" Tag="4"/>
             <Button Grid.Row="1" Grid.Column="2" Tag="5"/>
                                                  
-            <Button Grid.Row="2" Grid.Column="0" Tag="5"/>
-            <Button Grid.Row="2" Grid.Column="1" Tag="6"/>
-            <Button Grid.Row="2" Grid.Column="2" Tag="7"/>
+            <Button Grid.Row="2" Grid.Column="0" Tag="6"/>
+            <Button Grid.Row="2" Grid.Column="1" Tag="7"/>
+            <Button Grid.Row="2" Grid.Column="2" Tag="8"/>
         </Grid>
 
         <Grid Grid.Row="2" Margin="10">
