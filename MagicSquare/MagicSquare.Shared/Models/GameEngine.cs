@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Linq;
 
 namespace MagicSquare
@@ -25,9 +26,10 @@ namespace MagicSquare
 
             for (int i = 0; i < arrayOfRandomInegers.Length; i++)
             {
+                arrayOfRandomInegers[i] = -1;
                 while (true)
                 {
-                    int x = random.Next(0, 10);
+                    int x = random.Next(0, 9);
 
                     if (!arrayOfRandomInegers.Contains(x))
                     {
@@ -37,8 +39,38 @@ namespace MagicSquare
                 }
             }
 
+            if (!Solvable())
+            {
+                PopulateArray();
+            }
+
             //for (int i = 1; i < arrayOfRandomInegers.Length; i++)
             //    ArrayOfRandomIntegers[i - 1] = i;
+        }
+
+        private bool Solvable()
+        {
+            var inversions = 0;
+
+            for (var i = 0; i < ArrayOfRandomIntegers.Length; i++){
+                for (var j = i + 1; j < ArrayOfRandomIntegers.Length; j++){
+                    if (ArrayOfRandomIntegers[j] > ArrayOfRandomIntegers[i])
+                    {
+                        inversions++;
+                    }
+                }
+            }
+
+            if (inversions % 2 == 1)
+            {
+                Debug.WriteLine("It's Unsolvable");
+                return false;
+            }
+            else
+            {
+                Debug.WriteLine("It's Solvable");
+                return true;
+            }
         }
 
         internal bool CheckMove(int emptyCellTag, int buttonClickedTag, string buttonClickedContent)

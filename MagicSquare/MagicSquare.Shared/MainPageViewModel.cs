@@ -21,7 +21,7 @@ namespace MagicSquare
         private void DisplayArray()
         {
             for (int i = 0; i < Container.Children.Count(); i++)
-                (Container.Children[i] as Button).Content = gameEngine.ArrayOfRandomIntegers[i] == 9 ? string.Empty : gameEngine.ArrayOfRandomIntegers[i].ToString();
+                (Container.Children[i] as Button).Content = gameEngine.ArrayOfRandomIntegers[i] == 8 ? string.Empty : gameEngine.ArrayOfRandomIntegers[i].ToString();
         }
 
         internal void HandleClickEvent(Button buttonClicked)
