@@ -7,14 +7,12 @@ namespace MagicSquare
     {
         private GameEngine gameEngine;
         public Grid Container { get; }
-
-        
+        public TimerClass TimerClass { get; set; } = new TimerClass();
 
         public MainPageViewModel(Grid container)
         {
             Container = container;
             gameEngine = new GameEngine();
-
             DisplayArray();
         }
 
@@ -26,7 +24,8 @@ namespace MagicSquare
 
         internal void HandleClickEvent(Button buttonClicked)
         {
-            
+            if (TimerClass == null)
+                TimerClass = new TimerClass();
 
             Button emptyCell = GetButton(string.Empty);
 
