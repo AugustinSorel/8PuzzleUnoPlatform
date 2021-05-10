@@ -1,6 +1,4 @@
-﻿using System;
-using System.Diagnostics;
-using System.Linq;
+﻿using System.Linq;
 using Windows.UI.Xaml.Controls;
 
 namespace MagicSquare
@@ -9,6 +7,8 @@ namespace MagicSquare
     {
         private GameEngine gameEngine;
         public Grid Container { get; }
+
+        
 
         public MainPageViewModel(Grid container)
         {
@@ -26,6 +26,8 @@ namespace MagicSquare
 
         internal void HandleClickEvent(Button buttonClicked)
         {
+            
+
             Button emptyCell = GetButton(string.Empty);
 
             bool valideMove = gameEngine.CheckMove(int.Parse(emptyCell.Tag.ToString()),

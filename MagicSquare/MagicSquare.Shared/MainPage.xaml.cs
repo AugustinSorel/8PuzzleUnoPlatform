@@ -16,11 +16,13 @@ namespace MagicSquare
         public MainPage()
         {
             this.InitializeComponent();
-
+            
             foreach (var item in container.Children.Cast<Button>())
                 item.Click += new RoutedEventHandler(Buttons_Click);
 
             mainPageViewModel = new MainPageViewModel(container);
+
+            this.DataContext = mainPageViewModel;
         }
 
         private void Buttons_Click(object sender, RoutedEventArgs e)
