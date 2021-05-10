@@ -36,6 +36,9 @@ namespace MagicSquare
                     }
                 }
             }
+
+            //for (int i = 1; i < arrayOfRandomInegers.Length; i++)
+            //    ArrayOfRandomIntegers[i - 1] = i;
         }
 
         internal bool CheckMove(int emptyCellTag, int buttonClickedTag, string buttonClickedContent)
@@ -53,6 +56,21 @@ namespace MagicSquare
                 return true;
 
             return false;
+        }
+
+        internal void UpdateArray(int emptyCellTag, int buttonClickedTag, int value)
+        {
+            ArrayOfRandomIntegers[emptyCellTag] = value;
+            ArrayOfRandomIntegers[buttonClickedTag] = 9;
+        }
+
+        internal bool CheckEndGame()
+        {
+            for (int i = 1; i < arrayOfRandomInegers.Length; i++)
+                if (arrayOfRandomInegers[i-1] != i)
+                    return false;
+
+            return true;
         }
     }
 }
