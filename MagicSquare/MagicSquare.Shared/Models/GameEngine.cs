@@ -43,23 +43,16 @@ namespace MagicSquare
             if (buttonClickedContent == string.Empty)
                 return false;
 
-            int x1 = Math.Abs(emptyCellTag - buttonClickedTag);
-
             if (buttonClickedTag == 2 && emptyCellTag == 3 || buttonClickedTag == 3 && emptyCellTag == 2)
                 return false;
 
             if (buttonClickedTag == 5 && emptyCellTag == 6 || buttonClickedTag == 6 && emptyCellTag == 5)
                 return false;
 
-            if (x1 == 3 || x1 == 1)
+            if (Math.Abs(emptyCellTag - buttonClickedTag) == 3 || Math.Abs(emptyCellTag - buttonClickedTag) == 1)
                 return true;
 
             return false;
-        }
-
-        internal void MoveNumberToEmptyCell()
-        {
-
         }
     }
 }

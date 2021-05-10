@@ -32,14 +32,14 @@ namespace MagicSquare
             
             if (goodMove)
             {
-                int number = int.Parse(buttonClicked.Content.ToString());
-
-                //Swap them
-                emptyCell.Content = number.ToString();
-                buttonClicked.Content = string.Empty;
-
-                //gameEngine.MoveNumberToEmptyCell();
+                SwapContents(emptyCell, buttonClicked);
             }
+        }
+
+        private void SwapContents(Button emptyCell, Button buttonClicked)
+        {
+            emptyCell.Content = buttonClicked.Content.ToString();
+            buttonClicked.Content = string.Empty;
         }
     }
 }
