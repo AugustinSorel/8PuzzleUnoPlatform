@@ -26,36 +26,16 @@ namespace MagicSquare
 
         internal void HandleClickEvent(Button buttonClicked)
         {
-            if (buttonClicked.Content.ToString() == string.Empty)
-                return;
+            Button emptyCell = Container.Children.Cast<Button>().Where(x => x.Content.ToString() == string.Empty).First();
 
-            // find the empty cell
-            Button button = Container.Children.Cast<Button>().Where(x => x.Content.ToString() == string.Empty).First();
-
-            // Get tags
-            int buttonClickedTag = int.Parse(buttonClicked.Tag.ToString());
-            int button2Tag = int.Parse(button.Tag.ToString());
-
-            int x1 = Math.Abs(button2Tag - buttonClickedTag);
-            Debug.WriteLine(x1);
-
-            if (buttonClickedTag == 2 && button2Tag == 3 || buttonClickedTag == 3 && button2Tag == 2)
+            bool goodMove = gameEngine.CheckMove(int.Parse(emptyCell.Tag.ToString()), int.Parse(buttonClicked.Tag.ToString()), buttonClicked.Content.ToString());
+            
+            if (goodMove)
             {
-                return;
-            }
-
-            if (buttonClickedTag == 5 && button2Tag == 6 || buttonClickedTag == 6 && button2Tag == 5)
-            {
-                return;
-            }
-
-            if (x1 == 3 || x1 == 1)
-            {
-                // Get number
                 int number = int.Parse(buttonClicked.Content.ToString());
 
                 //Swap them
-                button.Content = number.ToString();
+                emptyCell.Content = number.ToString();
                 buttonClicked.Content = string.Empty;
 
                 //gameEngine.MoveNumberToEmptyCell();
