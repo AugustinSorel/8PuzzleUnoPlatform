@@ -5,12 +5,12 @@ namespace MagicSquare
 {
     class GameEngine
     {
-        private int[] numbers;
+        private int[] arrayOfRandomInegers;
 
-        public int[] Numbers
+        public int[] ArrayOfRandomIntegers
         {
-            get { return numbers; }
-            set { numbers = value; }
+            get { return arrayOfRandomInegers; }
+            set { arrayOfRandomInegers = value; }
         }
 
         public GameEngine()
@@ -20,18 +20,18 @@ namespace MagicSquare
 
         private void PopulateArray()
         {
-            numbers = new int[9];
+            arrayOfRandomInegers = new int[9];
             Random random = new Random();
 
-            for (int i = 0; i < numbers.Length; i++)
+            for (int i = 0; i < arrayOfRandomInegers.Length; i++)
             {
                 while (true)
                 {
                     int x = random.Next(0, 10);
 
-                    if (!numbers.Contains(x))
+                    if (!arrayOfRandomInegers.Contains(x))
                     {
-                        numbers[i] = x;
+                        arrayOfRandomInegers[i] = x;
                         break;
                     }
                 }
