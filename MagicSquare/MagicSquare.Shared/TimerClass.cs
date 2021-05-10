@@ -30,7 +30,7 @@ namespace MagicSquare
             minute = 0;
             hour = 0;
 
-            dt.Start();
+            TimeString = string.Empty;
         }
 
         private void Timer_Click(object sender, object e)
@@ -75,6 +75,11 @@ namespace MagicSquare
 
             TimeString = hourString + ":" + minuteString + ":" + secString;
             Debug.WriteLine(TimeString);
+        }
+
+        internal void StartTimer()
+        {
+            dt.Start();
         }
 
         #region Property Changed Event Handler

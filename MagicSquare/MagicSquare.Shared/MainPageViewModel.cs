@@ -1,18 +1,29 @@
-﻿using System.Linq;
+﻿using System.ComponentModel;
+using System.Linq;
 using Windows.UI.Xaml.Controls;
 
 namespace MagicSquare
 {
-    class MainPageViewModel
+    class MainPageViewModel : INotifyPropertyChanged
     {
         private GameEngine gameEngine;
         public Grid Container { get; }
-        public TimerClass TimerClass { get; set; } = new TimerClass();
+        private TimerClass timeClass;
+        public TimerClass TimerClass 
+        {
+            get { return timeClass; }
+            set
+            {
+                timeClass = value;
+                NotifyPropertyChanged("TimerClass");
+            }
+        }
 
         public MainPageViewModel(Grid container)
         {
             Container = container;
             gameEngine = new GameEngine();
+            TimerClass = new TimerClass();
             DisplayArray();
         }
 
@@ -24,14 +35,12 @@ namespace MagicSquare
 
         internal void HandleClickEvent(Button buttonClicked)
         {
-            if (TimerClass == null)
-                TimerClass = new TimerClass();
+            if (TimerClass.TimeString == string.Empty)
+                TimerClass.StartTimer();
 
             Button emptyCell = GetButton(string.Empty);
 
-            bool valideMove = gameEngine.CheckMove(int.Parse(emptyCell.Tag.ToString()),
-                                                   int.Parse(buttonClicked.Tag.ToString()),
-                                                   buttonClicked.Content.ToString());
+            bool valideMove = gameEngine.CheckMove(int.Parse(emptyCell.Tag.ToString()), int.Parse(buttonClicked.Tag.ToString()), buttonClicked.Content.ToString());
 
             if (valideMove)
             {
@@ -49,5 +58,13 @@ namespace MagicSquare
             emptyCell.Content = buttonClicked.Content.ToString();
             buttonClicked.Content = string.Empty;
         }
+
+        #region Property Changed Event Handler
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void NotifyPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        #endregion
     }
 }
