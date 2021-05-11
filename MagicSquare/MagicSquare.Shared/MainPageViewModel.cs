@@ -37,7 +37,7 @@ namespace MagicSquare
         #region Handle Click Event
         internal void HandleClickEvent(Button buttonClicked)
         {
-            Button emptyCell = GetButton(string.Empty);
+            Button emptyCell = GetButtonWithString(string.Empty);
 
             MoveDetailStruct moveDetailStruct = GetMoveDetailStruct(buttonClicked, emptyCell);
 
@@ -93,9 +93,14 @@ namespace MagicSquare
             await new MessageDialog("You Won !!").ShowAsync();
         }
 
-        private Button GetButton(string buttonContent)
+        private Button GetButtonWithString(string buttonContent)
         {
             return Container.Children.Cast<Button>().Where(x => x.Content.ToString() == buttonContent).First();
+        }
+
+        private Button GetButtonWithTag(int tag)
+        {
+            return Container.Children.Cast<Button>().Where(x => int.Parse(x.Tag.ToString()) == tag).First();
         }
 
         private void SwapContents(Button emptyCell, Button buttonClicked)
@@ -121,27 +126,17 @@ namespace MagicSquare
 
                 MoveDetailStruct moveDetailStruct = new MoveDetailStruct()
                 {
-                    ButtonClickedTag = int.Parse(moveDetailStructArray[0]),
-                    EmptyCellTag = int.Parse(moveDetailStructArray[1]),
-                    ButtonClickedContent = moveDetailStructArray[2],
-                };
-
-                MoveDetailStruct moveDetailStruct2 = new MoveDetailStruct()
-                {
-                    ButtonClickedTag = int.Parse(moveDetailStructArray[1]),
                     EmptyCellTag = int.Parse(moveDetailStructArray[0]),
+                    ButtonClickedTag = int.Parse(moveDetailStructArray[1]),
                     ButtonClickedContent = moveDetailStructArray[2],
                 };
 
-                gameEngine.UpdateArray(moveDetailStruct2);
+                gameEngine.UpdateArray(moveDetailStruct);
 
-                Button button = Container.Children.Cast<Button>().Where(x => int.Parse(x.Tag.ToString()) == moveDetailStruct.ButtonClickedTag).First();
-                Button emptyCellButton = Container.Children.Cast<Button>().Where(x => int.Parse(x.Tag.ToString()) == moveDetailStruct.EmptyCellTag).First();
+                Button emptyCellButton = GetButtonWithTag(moveDetailStruct.EmptyCellTag);
+                Button button = GetButtonWithTag(moveDetailStruct.ButtonClickedTag);
 
-                emptyCellButton.Content = string.Empty;
-                button.Content = moveDetailStruct.ButtonClickedContent;
-
-                //SwapContents();
+                SwapContents(emptyCellButton, button);
             }
         }
     }
