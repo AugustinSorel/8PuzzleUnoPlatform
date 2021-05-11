@@ -77,7 +77,7 @@ namespace MagicSquare
 
         internal string GetCode()
         {
-            return "d";
+            return History.StackPop();
         }
 
         internal bool CheckMove(MoveDetailStruct moveDetailStruct)

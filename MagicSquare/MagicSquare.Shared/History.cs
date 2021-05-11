@@ -27,5 +27,10 @@ namespace MagicSquare
 
             return true;   
         }
+
+        internal string StackPop()
+        {
+            return UndoStack.Pop();
+        }
     }
 }

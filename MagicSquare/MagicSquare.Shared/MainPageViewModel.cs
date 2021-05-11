@@ -58,7 +58,7 @@ namespace MagicSquare
             HandleEndGame();
         }
 
-        private static MoveDetailStruct GetMoveDetailStruct(Button buttonClicked, Button emptyCell)
+        private MoveDetailStruct GetMoveDetailStruct(Button buttonClicked, Button emptyCell)
         {
             return new MoveDetailStruct()
             {
@@ -117,7 +117,25 @@ namespace MagicSquare
             if (canUndo)
             {
                 string code = gameEngine.GetCode();
+                string[] moveDetailStructArray = code.Split(',');
 
+                MoveDetailStruct moveDetailStruct = new MoveDetailStruct()
+                {
+                    ButtonClickedTag = int.Parse(moveDetailStructArray[0]),
+                    EmptyCellTag = int.Parse(moveDetailStructArray[1]),
+                    ButtonClickedContent = moveDetailStructArray[2],
+                };
+
+                Debug.WriteLine(moveDetailStruct.ButtonClickedTag);
+                Debug.WriteLine(moveDetailStruct.EmptyCellTag);
+
+                Button button = Container.Children.Cast<Button>().Where(x => int.Parse(x.Tag.ToString()) == moveDetailStruct.ButtonClickedTag).First();
+                Button emptyCellButton = Container.Children.Cast<Button>().Where(x => int.Parse(x.Tag.ToString()) == moveDetailStruct.EmptyCellTag).First();
+
+                emptyCellButton.Content = string.Empty;
+                button.Content = moveDetailStruct.ButtonClickedContent;
+
+                //SwapContents();
             }
         }
     }
