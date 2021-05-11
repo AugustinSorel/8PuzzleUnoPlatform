@@ -34,6 +34,7 @@ namespace MagicSquare
                 (Container.Children[i] as Button).Content = gameEngine.ArrayOfRandomIntegers[i] == 0 ? string.Empty : gameEngine.ArrayOfRandomIntegers[i].ToString();
         }
 
+        #region Handle Click Event
         internal void HandleClickEvent(Button buttonClicked)
         {
             Button emptyCell = GetButton(string.Empty);
@@ -90,6 +91,17 @@ namespace MagicSquare
         {
             emptyCell.Content = buttonClicked.Content.ToString();
             buttonClicked.Content = string.Empty;
+        }
+        #endregion
+
+        internal void HandleRedo()
+        {
+
+        }
+
+        internal void HandleUndo()
+        {
+
         }
     }
 }

@@ -32,5 +32,15 @@ namespace MagicSquare
         {
             mainPageViewModel.TimerClass.Pause();
         }
+
+        private void UndoButton_Click(object sender, RoutedEventArgs e)
+        {
+            mainPageViewModel.HandleUndo();
+        }
+
+        private void RedoButton_Click(object sender, RoutedEventArgs e)
+        {
+            mainPageViewModel.HandleRedo();
+        }
     }
 }
