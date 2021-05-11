@@ -82,10 +82,10 @@ namespace MagicSquare
             return false;
         }
 
-        internal void UpdateArray(int emptyCellTag, int buttonClickedTag, int value)
+        internal void UpdateArray(MoveDetailStruct moveDetailStruct)
         {
-            ArrayOfRandomIntegers[emptyCellTag] = value;
-            ArrayOfRandomIntegers[buttonClickedTag] = 0;
+            ArrayOfRandomIntegers[moveDetailStruct.EmptyCellTag] = int.Parse(moveDetailStruct.ButtonClickedContent);
+            ArrayOfRandomIntegers[moveDetailStruct.ButtonClickedTag] = 0;
         }
 
         internal bool CheckEndGame()

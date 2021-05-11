@@ -41,12 +41,7 @@ namespace MagicSquare
         {
             Button emptyCell = GetButton(string.Empty);
 
-            MoveDetailStruct moveDetailStruct = new MoveDetailStruct()
-            {
-                EmptyCellTag = int.Parse(emptyCell.Tag.ToString()),
-                ButtonClickedTag = int.Parse(buttonClicked.Tag.ToString()),
-                ButtonClickedContent = buttonClicked.Content.ToString(),
-            };
+            MoveDetailStruct moveDetailStruct = GetMoveDetailStruct(buttonClicked, emptyCell);
 
             bool valideMove = gameEngine.CheckMove(moveDetailStruct);
 
@@ -55,22 +50,28 @@ namespace MagicSquare
 
             CheckIfTimerIsEnabled();
 
-            HandleMove(buttonClicked, emptyCell);
+            gameEngine.UpdateArray(moveDetailStruct);
+
+            SwapContents(emptyCell, buttonClicked);
 
             AddHistory();
 
             HandleEndGame();
         }
 
+        private static MoveDetailStruct GetMoveDetailStruct(Button buttonClicked, Button emptyCell)
+        {
+            return new MoveDetailStruct()
+            {
+                EmptyCellTag = int.Parse(emptyCell.Tag.ToString()),
+                ButtonClickedTag = int.Parse(buttonClicked.Tag.ToString()),
+                ButtonClickedContent = buttonClicked.Content.ToString(),
+            };
+        }
+
         private void AddHistory()
         {
             History.AddToUndoStack();
-        }
-
-        private void HandleMove(Button buttonClicked, Button emptyCell)
-        {
-            gameEngine.UpdateArray(int.Parse(emptyCell.Tag.ToString()), int.Parse(buttonClicked.Tag.ToString()), int.Parse(buttonClicked.Content.ToString()));
-            SwapContents(emptyCell, buttonClicked);
         }
 
         private void CheckIfTimerIsEnabled()
