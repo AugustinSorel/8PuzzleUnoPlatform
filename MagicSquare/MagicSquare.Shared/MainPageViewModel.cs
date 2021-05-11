@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.Linq;
 using Windows.UI.Xaml.Controls;
 
@@ -32,16 +33,34 @@ namespace MagicSquare
 
             if (!valideMove)
                 return;
-                
+            
+            HandleMove(buttonClicked, emptyCell);
+
+            HandleEndGame();
+
+            CheckIfTimerIsEnabled();
+        }
+
+        private void HandleMove(Button buttonClicked, Button emptyCell)
+        {
             gameEngine.UpdateArray(int.Parse(emptyCell.Tag.ToString()), int.Parse(buttonClicked.Tag.ToString()), int.Parse(buttonClicked.Content.ToString()));
             SwapContents(emptyCell, buttonClicked);
+        }
 
-            bool endGame = gameEngine.CheckEndGame();
-            if (endGame)
-                Debug.WriteLine("Won !!!");
-
+        private void CheckIfTimerIsEnabled()
+        {
             if (!TimerClass.DispatcherTimer.IsEnabled)
                 TimerClass.StartTimer();
+        }
+
+        private void HandleEndGame()
+        {
+            bool endGame = gameEngine.CheckEndGame();
+            
+            if (endGame)
+            {
+
+            }
         }
 
         private Button GetButton(string buttonContent)
