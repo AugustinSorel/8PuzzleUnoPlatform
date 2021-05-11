@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Linq;
+using System.Threading.Tasks;
+using Windows.UI.Popups;
 using Windows.UI.Xaml.Controls;
 
 namespace MagicSquare
@@ -60,7 +62,14 @@ namespace MagicSquare
             if (endGame)
             {
 
+                ShowDialog();
             }
+        }
+
+        private async void ShowDialog()
+        {
+            var dialog = new MessageDialog("Hi!");
+            await dialog.ShowAsync();
         }
 
         private Button GetButton(string buttonContent)
