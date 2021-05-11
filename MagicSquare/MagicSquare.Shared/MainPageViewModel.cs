@@ -12,8 +12,7 @@ namespace MagicSquare
         private GameEngine gameEngine;
         public Grid Container { get; set; }
         public TimerClass TimerClass { get; set; }
-        private History History { get; set; }
-
+        
         public MainPageViewModel(Grid container)
         {
             Container = container;
@@ -25,7 +24,6 @@ namespace MagicSquare
         private void SetUpNewGame()
         {
             gameEngine = new GameEngine();
-            History = new History();
             TimerClass.Restart();
             DisplayArray();
         }
@@ -52,9 +50,10 @@ namespace MagicSquare
 
             gameEngine.UpdateArray(moveDetailStruct);
 
+            gameEngine.AddHistory(moveDetailStruct);
+
             SwapContents(emptyCell, buttonClicked);
 
-            AddHistory();
 
             HandleEndGame();
         }
@@ -67,11 +66,6 @@ namespace MagicSquare
                 ButtonClickedTag = int.Parse(buttonClicked.Tag.ToString()),
                 ButtonClickedContent = buttonClicked.Content.ToString(),
             };
-        }
-
-        private void AddHistory()
-        {
-            History.AddToUndoStack();
         }
 
         private void CheckIfTimerIsEnabled()
@@ -118,7 +112,13 @@ namespace MagicSquare
 
         internal void HandleUndo()
         {
+            bool canUndo = gameEngine.CheckCanUndo();
 
+            if (canUndo)
+            {
+                string code = gameEngine.GetCode();
+
+            }
         }
     }
 }

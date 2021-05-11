@@ -6,6 +6,7 @@ namespace MagicSquare
 {
     class GameEngine
     {
+        private History History { get; set; }
         private int[] arrayOfRandomInegers;
 
         public int[] ArrayOfRandomIntegers
@@ -16,6 +17,7 @@ namespace MagicSquare
 
         public GameEngine()
         {
+            History = new History();
             PopulateArray();
         }
 
@@ -45,8 +47,6 @@ namespace MagicSquare
             {
                 PopulateArray();
             }
-
-            
         }
 
         private bool Solvable()
@@ -63,6 +63,21 @@ namespace MagicSquare
             }
 
             return inversions % 2 != 1;
+        }
+
+        internal void AddHistory(MoveDetailStruct moveDetailStruct)
+        {
+            History.AddToUndoStack(moveDetailStruct);
+        }
+
+        internal bool CheckCanUndo()
+        {
+            return History.HandleUndo();
+        }
+
+        internal string GetCode()
+        {
+            return "d";
         }
 
         internal bool CheckMove(MoveDetailStruct moveDetailStruct)

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace MagicSquare
 {
@@ -12,9 +13,19 @@ namespace MagicSquare
             UndoStack = new Stack<string>();
         }
 
-        internal void AddToUndoStack()
+        internal void AddToUndoStack(MoveDetailStruct moveDetailStruct)
         {
-            UndoStack.Push("n");
+            string code = moveDetailStruct.ButtonClickedTag.ToString() + "," + moveDetailStruct.EmptyCellTag.ToString() + "," + moveDetailStruct.ButtonClickedContent;
+            Debug.WriteLine(code);
+            UndoStack.Push(code);
+        }
+
+        internal bool HandleUndo()
+        {
+            if (UndoStack.Count < 1)
+                return false;
+
+            return true;   
         }
     }
 }
