@@ -65,18 +65,18 @@ namespace MagicSquare
             return inversions % 2 != 1;
         }
 
-        internal bool CheckMove(int emptyCellTag, int buttonClickedTag, string buttonClickedContent)
+        internal bool CheckMove(MoveDetailStruct moveDetailStruct)
         {
-            if (buttonClickedContent == string.Empty)
+            if (moveDetailStruct.ButtonClickedContent == string.Empty)
                 return false;
 
-            if (buttonClickedTag == 2 && emptyCellTag == 3 || buttonClickedTag == 3 && emptyCellTag == 2)
+            if (moveDetailStruct.ButtonClickedTag == 2 && moveDetailStruct.EmptyCellTag == 3 || moveDetailStruct.ButtonClickedTag == 3 && moveDetailStruct.EmptyCellTag == 2)
                 return false;
 
-            if (buttonClickedTag == 5 && emptyCellTag == 6 || buttonClickedTag == 6 && emptyCellTag == 5)
+            if (moveDetailStruct.ButtonClickedTag == 5 && moveDetailStruct.EmptyCellTag == 6 || moveDetailStruct.ButtonClickedTag == 6 && moveDetailStruct.EmptyCellTag == 5)
                 return false;
 
-            if (Math.Abs(emptyCellTag - buttonClickedTag) == 3 || Math.Abs(emptyCellTag - buttonClickedTag) == 1)
+            if (Math.Abs(moveDetailStruct.EmptyCellTag - moveDetailStruct.ButtonClickedTag) == 3 || Math.Abs(moveDetailStruct.EmptyCellTag - moveDetailStruct.ButtonClickedTag) == 1)
                 return true;
 
             return false;

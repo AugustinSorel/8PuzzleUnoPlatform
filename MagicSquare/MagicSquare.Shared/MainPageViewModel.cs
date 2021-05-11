@@ -12,18 +12,20 @@ namespace MagicSquare
         private GameEngine gameEngine;
         public Grid Container { get; set; }
         public TimerClass TimerClass { get; set; }
+        private History History { get; set; }
 
         public MainPageViewModel(Grid container)
         {
             Container = container;
             TimerClass = new TimerClass();
-
+            
             SetUpNewGame();
         }
 
         private void SetUpNewGame()
         {
             gameEngine = new GameEngine();
+            History = new History();
             TimerClass.Restart();
             DisplayArray();
         }
@@ -39,7 +41,14 @@ namespace MagicSquare
         {
             Button emptyCell = GetButton(string.Empty);
 
-            bool valideMove = gameEngine.CheckMove(int.Parse(emptyCell.Tag.ToString()), int.Parse(buttonClicked.Tag.ToString()), buttonClicked.Content.ToString());
+            MoveDetailStruct moveDetailStruct = new MoveDetailStruct()
+            {
+                EmptyCellTag = int.Parse(emptyCell.Tag.ToString()),
+                ButtonClickedTag = int.Parse(buttonClicked.Tag.ToString()),
+                ButtonClickedContent = buttonClicked.Content.ToString(),
+            };
+
+            bool valideMove = gameEngine.CheckMove(moveDetailStruct);
 
             if (!valideMove)
                 return;
@@ -48,7 +57,14 @@ namespace MagicSquare
 
             HandleMove(buttonClicked, emptyCell);
 
+            AddHistory();
+
             HandleEndGame();
+        }
+
+        private void AddHistory()
+        {
+            History.AddToUndoStack();
         }
 
         private void HandleMove(Button buttonClicked, Button emptyCell)
