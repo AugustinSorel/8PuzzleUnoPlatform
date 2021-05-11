@@ -16,7 +16,6 @@ namespace MagicSquare
         internal void AddToUndoStack(MoveDetailStruct moveDetailStruct)
         {
             string code = moveDetailStruct.ButtonClickedTag.ToString() + "," + moveDetailStruct.EmptyCellTag.ToString() + "," + moveDetailStruct.ButtonClickedContent;
-            Debug.WriteLine(code);
             UndoStack.Push(code);
         }
 

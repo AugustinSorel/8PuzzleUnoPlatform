@@ -126,8 +126,14 @@ namespace MagicSquare
                     ButtonClickedContent = moveDetailStructArray[2],
                 };
 
-                Debug.WriteLine(moveDetailStruct.ButtonClickedTag);
-                Debug.WriteLine(moveDetailStruct.EmptyCellTag);
+                MoveDetailStruct moveDetailStruct2 = new MoveDetailStruct()
+                {
+                    ButtonClickedTag = int.Parse(moveDetailStructArray[1]),
+                    EmptyCellTag = int.Parse(moveDetailStructArray[0]),
+                    ButtonClickedContent = moveDetailStructArray[2],
+                };
+
+                gameEngine.UpdateArray(moveDetailStruct2);
 
                 Button button = Container.Children.Cast<Button>().Where(x => int.Parse(x.Tag.ToString()) == moveDetailStruct.ButtonClickedTag).First();
                 Button emptyCellButton = Container.Children.Cast<Button>().Where(x => int.Parse(x.Tag.ToString()) == moveDetailStruct.EmptyCellTag).First();

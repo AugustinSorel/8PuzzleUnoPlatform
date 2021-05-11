@@ -41,7 +41,7 @@ namespace MagicSquare
                 }
             }
 
-            //ArrayOfRandomIntegers = new int[] { 1, 2, 3, 4, 5, 6, 7, 0, 8 };
+            ArrayOfRandomIntegers = new int[] { 1, 2, 3, 4, 5, 6, 7, 0, 8 };
             
             if (!Solvable())
             {
@@ -101,6 +101,12 @@ namespace MagicSquare
         {
             ArrayOfRandomIntegers[moveDetailStruct.EmptyCellTag] = int.Parse(moveDetailStruct.ButtonClickedContent);
             ArrayOfRandomIntegers[moveDetailStruct.ButtonClickedTag] = 0;
+
+            foreach (var item in ArrayOfRandomIntegers)
+            {
+                Debug.Write(item + " ");
+            }
+            Debug.WriteLine("");
         }
 
         internal bool CheckEndGame()
