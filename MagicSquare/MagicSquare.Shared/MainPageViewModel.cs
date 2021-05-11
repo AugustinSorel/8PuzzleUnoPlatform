@@ -2,6 +2,8 @@
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.Core;
+using Windows.UI.Core;
 using Windows.UI.Popups;
 using Windows.UI.Xaml.Controls;
 
@@ -10,8 +12,8 @@ namespace MagicSquare
     class MainPageViewModel
     {
         private GameEngine gameEngine;
-        public Grid Container { get; }
-        public TimerClass TimerClass { get; }
+        public Grid Container { get; set; }
+        public TimerClass TimerClass { get; set; }
 
         public MainPageViewModel(Grid container)
         {
@@ -35,12 +37,12 @@ namespace MagicSquare
 
             if (!valideMove)
                 return;
-            
+
             HandleMove(buttonClicked, emptyCell);
 
-            HandleEndGame();
-
             CheckIfTimerIsEnabled();
+
+            HandleEndGame();
         }
 
         private void HandleMove(Button buttonClicked, Button emptyCell)
@@ -55,21 +57,26 @@ namespace MagicSquare
                 TimerClass.StartTimer();
         }
 
-        private void HandleEndGame()
+        private async void HandleEndGame()
         {
             bool endGame = gameEngine.CheckEndGame();
-            
+
             if (endGame)
             {
+                TimerClass.Pause();
 
-                ShowDialog();
+                await ShowEndGameMessage();
+
+                gameEngine = new GameEngine();
+                TimerClass.Restart();
+
+                DisplayArray();
             }
         }
 
-        private async void ShowDialog()
+        private async Task ShowEndGameMessage()
         {
-            var dialog = new MessageDialog("Hi!");
-            await dialog.ShowAsync();
+            await new MessageDialog("You Won !!").ShowAsync();
         }
 
         private Button GetButton(string buttonContent)

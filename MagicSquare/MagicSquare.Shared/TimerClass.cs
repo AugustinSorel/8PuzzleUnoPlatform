@@ -85,6 +85,11 @@ namespace MagicSquare
             return TimeString != "00:00:00";
         }
 
+        internal void Restart()
+        {
+            SetTimer();
+        }
+
         internal void StartTimer()
         {
             DispatcherTimer.Start();
