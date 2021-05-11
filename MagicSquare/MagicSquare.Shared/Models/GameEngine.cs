@@ -65,9 +65,19 @@ namespace MagicSquare
             return inversions % 2 != 1;
         }
 
-        internal void AddHistory(MoveDetailStruct moveDetailStruct)
+        internal void Test()
+        {
+            History.Test();
+        }
+
+        internal void AddRedo(MoveDetailStruct moveDetailStruct)
         {
             History.AddToUndoStack(moveDetailStruct);
+        }
+
+        internal void AddRedo(string code)
+        {
+            History.AddRedoToStack(code);
         }
 
         internal bool CheckCanUndo()
@@ -75,9 +85,19 @@ namespace MagicSquare
             return History.HandleUndo();
         }
 
-        internal string GetCode()
+        internal bool CheckCanRedo()
         {
-            return History.StackPop();
+            return History.HandleRedo();
+        }
+
+        internal string GetUndoCode()
+        {
+            return History.StackUndoPop();
+        }
+
+        internal string GetRedoCode()
+        {
+            return History.StackRedoPop();
         }
 
         internal bool CheckMove(MoveDetailStruct moveDetailStruct)

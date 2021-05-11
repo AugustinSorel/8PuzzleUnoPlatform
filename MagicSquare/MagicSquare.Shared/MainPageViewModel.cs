@@ -50,10 +50,10 @@ namespace MagicSquare
 
             gameEngine.UpdateArray(moveDetailStruct);
 
-            gameEngine.AddHistory(moveDetailStruct);
+            gameEngine.AddRedo(moveDetailStruct);
+            gameEngine.Test();
 
             SwapContents(emptyCell, buttonClicked);
-
 
             HandleEndGame();
         }
@@ -112,7 +112,29 @@ namespace MagicSquare
 
         internal void HandleRedo()
         {
+            bool canRedo = gameEngine.CheckCanRedo();
 
+            if (canRedo)
+            {
+                string code = gameEngine.GetRedoCode();
+                string[] moveDetailStructArray = code.Split(',');
+
+                MoveDetailStruct moveDetailStruct = new MoveDetailStruct()
+                {
+                    EmptyCellTag = int.Parse(moveDetailStructArray[1]),
+                    ButtonClickedTag = int.Parse(moveDetailStructArray[0]),
+                    ButtonClickedContent = moveDetailStructArray[2],
+                };
+
+                gameEngine.UpdateArray(moveDetailStruct);
+
+                Button emptyCellButton = GetButtonWithTag(moveDetailStruct.EmptyCellTag);
+                Button button = GetButtonWithTag(moveDetailStruct.ButtonClickedTag);
+
+                SwapContents(emptyCellButton, button);
+
+                gameEngine.AddRedo(moveDetailStruct);
+            }
         }
 
         internal void HandleUndo()
@@ -121,7 +143,7 @@ namespace MagicSquare
 
             if (canUndo)
             {
-                string code = gameEngine.GetCode();
+                string code = gameEngine.GetUndoCode();
                 string[] moveDetailStructArray = code.Split(',');
 
                 MoveDetailStruct moveDetailStruct = new MoveDetailStruct()
@@ -137,6 +159,8 @@ namespace MagicSquare
                 Button button = GetButtonWithTag(moveDetailStruct.ButtonClickedTag);
 
                 SwapContents(emptyCellButton, button);
+
+                gameEngine.AddRedo(code);
             }
         }
     }

@@ -7,10 +7,12 @@ namespace MagicSquare
     internal class History
     {
         Stack<string> UndoStack { get; set; }
+        Stack<string> RedoStack { get; set; }
 
         public History()
         {
             UndoStack = new Stack<string>();
+            RedoStack = new Stack<string>();
         }
 
         internal void AddToUndoStack(MoveDetailStruct moveDetailStruct)
@@ -27,9 +29,32 @@ namespace MagicSquare
             return true;   
         }
 
-        internal string StackPop()
+        internal string StackUndoPop()
         {
             return UndoStack.Pop();
+        }
+
+        internal bool HandleRedo()
+        {
+            if (RedoStack.Count < 1)
+                return false;
+
+            return true;
+        }
+
+        internal void AddRedoToStack(string code)
+        {
+            RedoStack.Push(code);
+        }
+
+        internal string StackRedoPop()
+        {
+            return RedoStack.Pop();
+        }
+
+        internal void Test()
+        {
+            RedoStack.Clear();
         }
     }
 }
