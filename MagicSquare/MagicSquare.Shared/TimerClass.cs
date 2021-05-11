@@ -26,8 +26,6 @@ namespace MagicSquare
             DispatcherTimer = new DispatcherTimer();
             DispatcherTimer.Tick += Timer_Tick;
             DispatcherTimer.Interval = TimeSpan.FromSeconds(1);
-
-            SetTimer();
         }
 
         private void SetTimer()
@@ -42,14 +40,6 @@ namespace MagicSquare
         private void Timer_Tick(object sender, object e)
         {
             TimeString = GetTimeString();
-        }
-
-        internal void Pause()
-        {
-            if (DispatcherTimer.IsEnabled)
-                DispatcherTimer.Stop();
-            else
-                StartTimer();
         }
 
         private string GetTimeString()
@@ -88,6 +78,14 @@ namespace MagicSquare
         internal void Restart()
         {
             SetTimer();
+        }
+
+        internal void Pause()
+        {
+            if (DispatcherTimer.IsEnabled)
+                DispatcherTimer.Stop();
+            else
+                StartTimer();
         }
 
         internal void StartTimer()

@@ -2,8 +2,6 @@
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using Windows.ApplicationModel.Core;
-using Windows.UI.Core;
 using Windows.UI.Popups;
 using Windows.UI.Xaml.Controls;
 
@@ -18,8 +16,15 @@ namespace MagicSquare
         public MainPageViewModel(Grid container)
         {
             Container = container;
-            gameEngine = new GameEngine();
             TimerClass = new TimerClass();
+
+            SetUpNewGame();
+        }
+
+        private void SetUpNewGame()
+        {
+            gameEngine = new GameEngine();
+            TimerClass.Restart();
             DisplayArray();
         }
 
@@ -38,9 +43,9 @@ namespace MagicSquare
             if (!valideMove)
                 return;
 
-            HandleMove(buttonClicked, emptyCell);
-
             CheckIfTimerIsEnabled();
+
+            HandleMove(buttonClicked, emptyCell);
 
             HandleEndGame();
         }
@@ -67,10 +72,7 @@ namespace MagicSquare
 
                 await ShowEndGameMessage();
 
-                gameEngine = new GameEngine();
-                TimerClass.Restart();
-
-                DisplayArray();
+                SetUpNewGame();
             }
         }
 

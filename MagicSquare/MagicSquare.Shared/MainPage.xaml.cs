@@ -17,7 +17,7 @@ namespace MagicSquare
         {
             InitializeComponent();
             mainPageViewModel = new MainPageViewModel(container);
-            DataContext = mainPageViewModel.TimerClass;
+            DataContext = mainPageViewModel;
 
             foreach (var item in container.Children.Cast<Button>())
                 item.Click += new RoutedEventHandler(Buttons_Click);

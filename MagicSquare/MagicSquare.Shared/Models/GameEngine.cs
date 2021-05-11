@@ -39,7 +39,7 @@ namespace MagicSquare
                 }
             }
 
-            ArrayOfRandomIntegers = new int[] { 1, 2, 3, 4, 5, 6, 7, 0, 8 };
+            //ArrayOfRandomIntegers = new int[] { 1, 2, 3, 4, 5, 6, 7, 0, 8 };
             
             if (!Solvable())
             {
