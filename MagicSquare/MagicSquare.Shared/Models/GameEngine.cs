@@ -39,38 +39,30 @@ namespace MagicSquare
                 }
             }
 
+            //ArrayOfRandomIntegers = new int[] { 1, 2, 3, 4, 5, 6, 8, 0, 7 };
+            
             if (!Solvable())
             {
                 PopulateArray();
             }
 
-            for (int i = 0; i < arrayOfRandomInegers.Length; i++)
-                ArrayOfRandomIntegers[i] = i;
+            
         }
 
         private bool Solvable()
         {
-            var inversions = 0;
+            int inversions = 0;
 
-            for (var i = 0; i < ArrayOfRandomIntegers.Length; i++){
-                for (var j = i + 1; j < ArrayOfRandomIntegers.Length; j++){
-                    if (ArrayOfRandomIntegers[j] > ArrayOfRandomIntegers[i])
-                    {
-                        inversions++;
-                    }
-                }
+            for (int i = 0; i < ArrayOfRandomIntegers.Length - 1; i++)
+            {
+                for (int j = i + 1; j < ArrayOfRandomIntegers.Length; j++)
+                    if (ArrayOfRandomIntegers[i] > ArrayOfRandomIntegers[j]) inversions++;
+
+                if (ArrayOfRandomIntegers[i] == 0 && i % 2 == 1) 
+                    inversions++;
             }
 
-            if (inversions % 2 == 1)
-            {
-                Debug.WriteLine("It's Unsolvable");
-                return false;
-            }
-            else
-            {
-                Debug.WriteLine("It's Solvable");
-                return true;
-            }
+            return inversions % 2 != 1;
         }
 
         internal bool CheckMove(int emptyCellTag, int buttonClickedTag, string buttonClickedContent)
@@ -93,14 +85,14 @@ namespace MagicSquare
         internal void UpdateArray(int emptyCellTag, int buttonClickedTag, int value)
         {
             ArrayOfRandomIntegers[emptyCellTag] = value;
-            ArrayOfRandomIntegers[buttonClickedTag] = 8;
+            ArrayOfRandomIntegers[buttonClickedTag] = 0;
         }
 
         internal bool CheckEndGame()
         {
-            for (int i = 0; i < arrayOfRandomInegers.Length; i++)
-                if (arrayOfRandomInegers[i] != i)
-                    return false;// 0 -> empty string.
+            for (int i = 1; i < arrayOfRandomInegers.Length; i++)
+                if (arrayOfRandomInegers[i-1] != i)
+                    return false;
 
             return true;
         }
