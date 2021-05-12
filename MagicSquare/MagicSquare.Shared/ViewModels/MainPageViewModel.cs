@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Windows.Storage;
 using Windows.UI.Popups;
 using Windows.UI.Xaml.Controls;
 

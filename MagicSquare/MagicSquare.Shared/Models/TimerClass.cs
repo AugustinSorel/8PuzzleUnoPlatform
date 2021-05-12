@@ -42,6 +42,8 @@ namespace MagicSquare
             hour = int.Parse(x);
             minute = int.Parse(y);
             sec = int.Parse(z);
+
+            DispatcherTimer.Stop();
         }
 
         private void Timer_Tick(object sender, object e)
