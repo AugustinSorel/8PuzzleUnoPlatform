@@ -182,10 +182,13 @@ namespace MagicSquare
             
             var time = TimerClass.TimeString.Split(':');
 
-            Debug.WriteLine(TimerClass.TimeString);
-
             TimerClass.LoadTimer(time[0], time[1], time[2]);
             DisplayArray();
+        }
+
+        internal void HandleSolve()
+        {
+
         }
     }
 }

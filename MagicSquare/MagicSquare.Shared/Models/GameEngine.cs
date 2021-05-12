@@ -121,12 +121,6 @@ namespace MagicSquare
         {
             ArrayOfRandomIntegers[moveDetailStruct.EmptyCellTag] = int.Parse(moveDetailStruct.ButtonClickedContent);
             ArrayOfRandomIntegers[moveDetailStruct.ButtonClickedTag] = 0;
-
-            foreach (var item in ArrayOfRandomIntegers)
-            {
-                Debug.Write(item + " ");
-            }
-            Debug.WriteLine("");
         }
 
         internal bool CheckEndGame()
