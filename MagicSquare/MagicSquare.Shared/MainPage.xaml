@@ -92,10 +92,6 @@
 
                             <MenuFlyoutItem x:Name="saveButton" Text="Save" Icon="Save" Click="SaveButton_Click"/>
 
-                            <MenuFlyoutSeparator />
-
-                            <MenuFlyoutItem x:Name="SolveButton" Text="Solve" Icon="Help" Click="SolveButton_Click"/>
-
                         </MenuFlyout>
                     </Button.Flyout>
 

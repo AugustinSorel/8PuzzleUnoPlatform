@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,12 +13,12 @@ namespace MagicSquare
         private GameEngine gameEngine;
         public Grid Container { get; set; }
         public TimerClass TimerClass { get; set; }
-        
+
         public MainPageViewModel(Grid container)
         {
             Container = container;
             TimerClass = new TimerClass();
-            
+
             SetUpNewGame();
         }
 
@@ -179,16 +180,12 @@ namespace MagicSquare
         internal void HandleLoadGame()
         {
             TimerClass.TimeString = gameEngine.HandleLoadGame();
-            
+
             var time = TimerClass.TimeString.Split(':');
 
             TimerClass.LoadTimer(time[0], time[1], time[2]);
             DisplayArray();
         }
 
-        internal void HandleSolve()
-        {
-
-        }
     }
 }

@@ -57,10 +57,5 @@ namespace MagicSquare
         {
             mainPageViewModel.HandleSaveGame();
         }
-
-        private void SolveButton_Click(object sender, RoutedEventArgs e)
-        {
-            mainPageViewModel.HandleSolve();
-        }
     }
 }
