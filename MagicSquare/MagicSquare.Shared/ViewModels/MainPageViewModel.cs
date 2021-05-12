@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Windows.Storage;
 using Windows.UI.Popups;
 using Windows.UI.Xaml.Controls;
 
@@ -170,5 +172,43 @@ namespace MagicSquare
         {
             SetUpNewGame();
         }
+
+        internal void HandleSaveGame()
+        {
+            new SaveGame(gameEngine.ArrayOfRandomIntegers);
+        }
+
+        internal void HandleLoadGame()
+        {
+            new LoadGame();
+        }
+    }
+
+    internal class SaveGame
+    {
+        private int[] arrayOfRandomIntegers;
+
+        public SaveGame(int[] arrayOfRandomIntegers)
+        {
+            this.arrayOfRandomIntegers = arrayOfRandomIntegers;
+
+            ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+            localSettings.Values["test setting"] = "TEst";
+        }
+
+    }
+
+    internal class LoadGame
+    {
+        private int[] arrayOfRandomIntegers;
+
+        public LoadGame()
+        {
+            ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+            String localValue = localSettings.Values["test setting"] as string;
+
+            Debug.WriteLine(localValue);
+        }
+
     }
 }

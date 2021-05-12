@@ -50,12 +50,12 @@ namespace MagicSquare
 
         private void OpenButton_Click(object sender, RoutedEventArgs e)
         {
-
+            mainPageViewModel.HandleLoadGame();
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-
+            mainPageViewModel.HandleSaveGame();
         }
     }
 }
