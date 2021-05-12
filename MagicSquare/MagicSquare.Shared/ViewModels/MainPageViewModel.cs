@@ -110,6 +110,7 @@ namespace MagicSquare
         }
         #endregion
 
+        #region History
         internal void HandleRedo()
         {
             bool canRedo = gameEngine.CheckCanRedo();
@@ -162,6 +163,12 @@ namespace MagicSquare
 
                 gameEngine.AddRedo(code);
             }
+        }
+        #endregion 
+
+        internal void HandleRestart()
+        {
+            SetUpNewGame();
         }
     }
 }

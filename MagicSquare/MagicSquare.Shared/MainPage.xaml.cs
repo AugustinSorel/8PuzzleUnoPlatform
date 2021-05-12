@@ -42,5 +42,20 @@ namespace MagicSquare
         {
             mainPageViewModel.HandleRedo();
         }
+
+        private void RestartButton_Click(object sender, RoutedEventArgs e)
+        {
+            mainPageViewModel.HandleRestart();
+        }
+
+        private void OpenButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

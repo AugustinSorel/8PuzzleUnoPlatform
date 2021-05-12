@@ -77,6 +77,7 @@ namespace MagicSquare
 
         internal void Restart()
         {
+            DispatcherTimer.Stop();
             SetTimer();
         }
 

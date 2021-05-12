@@ -83,11 +83,12 @@
 
                     <Button.Flyout>
                         <MenuFlyout>
-                            <MenuFlyoutItem Text="Restart" Icon="Refresh"/>
+                            
+                            <MenuFlyoutItem x:Name="restartButton" Text="Restart" Icon="Refresh" Click="RestartButton_Click"/>
 
-                            <MenuFlyoutItem Text="Open" Icon="OpenFile"/>
+                            <MenuFlyoutItem x:Name="openButton" Text="Open" Icon="OpenFile" Click="OpenButton_Click"/>
 
-                            <MenuFlyoutItem Text="Save" Icon="Save"/>
+                            <MenuFlyoutItem x:Name="saveButton" Text="Save" Icon="Save" Click="SaveButton_Click"/>
 
                         </MenuFlyout>
                     </Button.Flyout>
