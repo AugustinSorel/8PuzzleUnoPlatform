@@ -29,11 +29,11 @@ namespace MagicSquare.Droid
 			HideStatusBar();
 		}
 
-		private void HideStatusBar()
+		private async void HideStatusBar()
 		{
 			var statusBar = Windows.UI.ViewManagement.StatusBar.GetForCurrentView();
 
-			Windows.UI.Xaml.Window.Current.Dispatcher.RunAsync(
+			await Windows.UI.Xaml.Window.Current.Dispatcher.RunAsync(
 				Windows.UI.Core.CoreDispatcherPriority.Normal,
 				async () => await statusBar.HideAsync()
 			);
