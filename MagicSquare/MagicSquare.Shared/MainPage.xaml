@@ -78,7 +78,7 @@
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
 
-                <Button x:Name="menuButton" Grid.Column="1" Style="{ThemeResource ToolBarButtonStyle}">
+                <Button x:Name="menuButton" Grid.Column="1" Style="{ThemeResource ToolBarButtonStyle}" Margin="0">
                     <SymbolIcon Symbol="GlobalNavigationButton"/>
 
                     <Button.Flyout>
