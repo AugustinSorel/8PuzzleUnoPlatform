@@ -65,12 +65,12 @@ namespace MagicSquare
             return inversions % 2 != 1;
         }
 
-        internal void Test()
+        internal void ClearRedoStack()
         {
-            History.Test();
+            History.ClearRedoStack();
         }
 
-        internal void AddRedo(MoveDetailStruct moveDetailStruct)
+        internal void AddToUndo(MoveDetailStruct moveDetailStruct)
         {
             History.AddToUndoStack(moveDetailStruct);
         }

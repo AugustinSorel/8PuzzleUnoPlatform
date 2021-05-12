@@ -50,8 +50,8 @@ namespace MagicSquare
 
             gameEngine.UpdateArray(moveDetailStruct);
 
-            gameEngine.AddRedo(moveDetailStruct);
-            gameEngine.Test();
+            gameEngine.AddToUndo(moveDetailStruct);
+            gameEngine.ClearRedoStack();
 
             SwapContents(emptyCell, buttonClicked);
 
@@ -133,7 +133,7 @@ namespace MagicSquare
 
                 SwapContents(emptyCellButton, button);
 
-                gameEngine.AddRedo(moveDetailStruct);
+                gameEngine.AddToUndo(moveDetailStruct);
             }
         }
 

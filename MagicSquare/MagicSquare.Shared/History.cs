@@ -52,7 +52,7 @@ namespace MagicSquare
             return RedoStack.Pop();
         }
 
-        internal void Test()
+        internal void ClearRedoStack()
         {
             RedoStack.Clear();
         }
