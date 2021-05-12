@@ -59,6 +59,7 @@
         </Grid>
 
         <Grid Grid.Row="2" Margin="10">
+
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
 
                 <Button Style="{StaticResource ToolBarButtonStyle}" Click="UndoButton_Click">
@@ -72,8 +73,29 @@
                 <Button  Style="{StaticResource ToolBarButtonStyle}" Click="RedoButton_Click">
                     <SymbolIcon Symbol="Redo"/>
                 </Button>
+
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+
+                <Button x:Name="menuButton" Grid.Column="1" Style="{ThemeResource ToolBarButtonStyle}">
+                    <SymbolIcon Symbol="GlobalNavigationButton"/>
+
+                    <Button.Flyout>
+                        <MenuFlyout>
+                            <MenuFlyoutItem Text="Restart" Icon="Refresh"/>
+
+                            <MenuFlyoutItem Text="Open" Icon="OpenFile"/>
+
+                            <MenuFlyoutItem Text="Save" Icon="Save"/>
+
+                        </MenuFlyout>
+                    </Button.Flyout>
+
+                </Button>
                 
             </StackPanel>
+
         </Grid>
         
     </Grid>
