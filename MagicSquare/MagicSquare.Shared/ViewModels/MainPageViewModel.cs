@@ -175,40 +175,19 @@ namespace MagicSquare
 
         internal void HandleSaveGame()
         {
-            new SaveGame(gameEngine.ArrayOfRandomIntegers);
+            gameEngine.HandleSaveGame(TimerClass.TimeString);
         }
 
         internal void HandleLoadGame()
         {
-            new LoadGame();
+            TimerClass.TimeString = gameEngine.HandleLoadGame();
+            
+            var time = TimerClass.TimeString.Split(':');
+
+            Debug.WriteLine(TimerClass.TimeString);
+
+            TimerClass.LoadTimer(time[0], time[1], time[2]);
+            DisplayArray();
         }
-    }
-
-    internal class SaveGame
-    {
-        private int[] arrayOfRandomIntegers;
-
-        public SaveGame(int[] arrayOfRandomIntegers)
-        {
-            this.arrayOfRandomIntegers = arrayOfRandomIntegers;
-
-            ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
-            localSettings.Values["test setting"] = "TEst";
-        }
-
-    }
-
-    internal class LoadGame
-    {
-        private int[] arrayOfRandomIntegers;
-
-        public LoadGame()
-        {
-            ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
-            String localValue = localSettings.Values["test setting"] as string;
-
-            Debug.WriteLine(localValue);
-        }
-
     }
 }

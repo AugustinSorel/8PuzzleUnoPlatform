@@ -18,7 +18,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)LoadGame.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\History.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SaveGame.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\GameEngine.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MainPage.xaml.cs">

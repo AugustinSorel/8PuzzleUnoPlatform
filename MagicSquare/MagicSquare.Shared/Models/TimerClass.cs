@@ -37,6 +37,13 @@ namespace MagicSquare
             TimeString = "00:00:00";
         }
 
+        internal void LoadTimer(string x, string y, string z)
+        {
+            hour = int.Parse(x);
+            minute = int.Parse(y);
+            sec = int.Parse(z);
+        }
+
         private void Timer_Tick(object sender, object e)
         {
             TimeString = GetTimeString();

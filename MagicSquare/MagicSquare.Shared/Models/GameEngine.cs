@@ -137,5 +137,23 @@ namespace MagicSquare
 
             return true;
         }
+
+        internal void HandleSaveGame(string time)
+        {
+            new SaveGame(ArrayOfRandomIntegers, time);
+        }
+
+        internal string HandleLoadGame()
+        {
+            LoadGame loadGame = new LoadGame();
+
+            string timeString = loadGame.GetTimeString();
+            arrayOfRandomInegers = loadGame.GetArray();
+
+
+            History = new History();
+
+            return timeString;
+        }
     }
 }
