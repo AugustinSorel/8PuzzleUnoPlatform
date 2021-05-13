@@ -12,4 +12,8 @@ The goal of the puzzle is to place the tiles in order by making sliding moves th
 * Error detection
 
 ## Previews
-![](https://github.com/AugustinSorel/LeTaquin/blob/master/2021-01-20%2018-39-06.gif)
+![](https://github.com/AugustinSorel/8PuzzleUnoPlatform/blob/master/Images/Capture2.PNG)
+
+![](https://github.com/AugustinSorel/8PuzzleUnoPlatform/blob/master/Images/Capture2.PNG)
+
+![](https://github.com/AugustinSorel/8PuzzleUnoPlatform/blob/master/Images/Capture1.PNG)
